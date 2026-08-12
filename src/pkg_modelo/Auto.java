@@ -12,14 +12,14 @@ public abstract class Auto {
     protected int id;
     protected String tipo;
     protected String marca;
-    protected String anio;
+    protected String matricula;
     protected String color; 
 
-    public Auto(int id, String tipo, String marca, String anio, String color) {
+    public Auto(int id, String tipo, String marca, String matricula, String color) {
         this.id = id;
         this.tipo = tipo;
         this.marca = marca;
-        this.anio = anio;
+        this.matricula = matricula;
         this.color = color;
     }
 
@@ -35,8 +35,8 @@ public abstract class Auto {
         return marca;
     }
 
-    public String getAnio() {
-        return anio;
+    public String getMatricula() {
+        return matricula;
     }
 
     public String getColor() {

@@ -10,11 +10,11 @@ package pkg_modelo;
  */
 public class Deportivo extends Auto {
 
-    public Deportivo(int id, String tipo, String marca, String anio, String color) {
-        super(id, tipo, marca, anio, color);
+    public Deportivo(int id, String tipo, String marca, String matricula, String color) {
+        super(id, tipo, marca, matricula, color);
     }
     @Override
     public String detalles(){
-        return this.tipo+"Cuatro asiento, mucha comodidad.";
+        return this.tipo+"Frenos potenciados, motores potentes y diseño aerodinámico";
     }
 }
