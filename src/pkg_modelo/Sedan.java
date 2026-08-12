@@ -16,6 +16,6 @@ public class Sedan extends Auto{
     
     @Override
     public String detalles(){
-        return this.tipo+"Cuatro asiento, mucha comodidad.";
+        return this.tipo+"Cinco asientos, mucha comodidad y con buena aerodinámica";
     }
 }

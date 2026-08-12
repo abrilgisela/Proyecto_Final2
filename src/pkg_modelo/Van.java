@@ -15,6 +15,6 @@ public class Van extends Auto{
     }
     @Override
     public String detalles(){
-        return this.tipo+"Cuatro asiento, mucha comodidad.";
+        return this.tipo+"Quince asientos con acceso fácil y seguro.";
     }
 }
