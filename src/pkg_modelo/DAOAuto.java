@@ -27,7 +27,7 @@ public class DAOAuto {
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, a.getTipo());
             stmt.setString(2, a.getMarca());
-            stmt.setString(3, a.getAnio());
+            stmt.setString(3, a.getMatricula());
             stmt.setString(4, a.getColor());
             stmt.executeUpdate();
         }
@@ -75,7 +75,7 @@ public class DAOAuto {
                 PreparedStatement stmt=conn.prepareStatement(sql)){
                 stmt.setString(1, a.tipo);
                 stmt.setString(2, a.marca);
-                stmt.setString(3, a.anio);
+                stmt.setString(3, a.matricula);
                 stmt.setString(4, a.color);
                 stmt.setString(5, tipoOriginal);
                 stmt.executeUpdate();
