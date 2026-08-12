@@ -5,19 +5,23 @@
 package pkg_vista;
 
 import java.awt.CardLayout;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Pau
  */
 public class Vista extends javax.swing.JFrame {
-    
+    public DefaultTableModel modeloTabla;
+    public String nombreSeleccionado=null;
     /**
      * Creates new form Vista
      */
     public Vista() {
         initComponents();
-        
+        modeloTabla=new DefaultTableModel(new Object[]{"Tipo","Marca","Año","Color"},0);
+        tabla.setModel(modeloTabla);
+        lblTipo.setText(comboTipo.getSelectedItem().toString());
     }
 
     /**
@@ -35,8 +39,8 @@ public class Vista extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        tabla = new javax.swing.JTable();
+        lblTipo = new javax.swing.JLabel();
         comboTipo = new javax.swing.JComboBox<>();
         btnConsultar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -58,20 +62,20 @@ public class Vista extends javax.swing.JFrame {
 
         jLabel2.setText("Registrar Auto");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tipo", "Marca", "Año", "Color"
+                "ID", "Tipo", "Marca", "Año", "Color"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
-        jLabel3.setText("Tipo:");
+        lblTipo.setText("Tipo:");
 
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Sedan", "Van", "Deportivo", "Convertible" }));
 
@@ -109,7 +113,7 @@ public class Vista extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
+                                        .addComponent(lblTipo)
                                         .addComponent(jLabel4))
                                     .addComponent(jLabel6))
                                 .addGap(34, 34, 34)
@@ -158,7 +162,7 @@ public class Vista extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
+                            .addComponent(lblTipo)
                             .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,13 +232,13 @@ public class Vista extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JLabel lblTipo;
+    public javax.swing.JTable tabla;
     public javax.swing.JTextField txtColor;
     public javax.swing.JTextField txtMarca;
     public javax.swing.JTextField txtMatricula;

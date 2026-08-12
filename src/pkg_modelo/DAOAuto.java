@@ -22,7 +22,7 @@ public class DAOAuto {
 
     // INSERTAR
     public void insertar(Auto a) throws SQLException {
-        String sql = "INSERT INTO libro(tipo, marca, anio, color) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO auto(tipo, marca, matricula, color) VALUES(?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, a.getTipo());
@@ -32,6 +32,39 @@ public class DAOAuto {
             stmt.executeUpdate();
         }
     }
+    
+    public ArrayList<Auto> obtenerPorTipo(String tipoSeleccionado) throws SQLException {
+    ArrayList<Auto> lista = new ArrayList<>();
+    String sql = "SELECT * FROM auto WHERE tipo = ?";
+
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, tipoSeleccionado);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String tipo = rs.getString("tipo");
+            String marca = rs.getString("marca");
+            String matricula = rs.getString("matricula");
+            String color = rs.getString("color");
+
+            switch (tipo) {
+                case "Sedan":
+                    lista.add(new Sedan(id, tipo, marca, matricula, color));break;
+                case "Van":
+                    lista.add(new Van(id, tipo, marca, matricula, color));break;
+                case "Deportivo":
+                    lista.add(new Deportivo(id, tipo, marca, matricula, color));break;
+                case "Convertible":
+                    lista.add(new Convertible(id, tipo, marca, matricula, color));break;
+            }
+        }
+    }
+
+    return lista;
+}
     
     public ArrayList<Auto> consultar() throws SQLException {
         ArrayList<Auto> lista = new ArrayList<>();

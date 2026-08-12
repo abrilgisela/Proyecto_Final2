@@ -10,8 +10,8 @@ package pkg_modelo;
  */
 public class Sedan extends Auto{
 
-    public Sedan(int id, String tipo, String marca, String anio, String color) {
-        super(id, tipo, marca, anio, color);
+    public Sedan(int id, String tipo, String marca, String matricula, String color) {
+        super(id, tipo, marca, matricula, color);
     }
     
     @Override
