@@ -9,5 +9,13 @@ package pkg_modelo;
  * @author anato
  */
 public class Sedan extends Auto{
+
+    public Sedan(int id, String tipo, String marca, String anio, String color) {
+        super(id, tipo, marca, anio, color);
+    }
     
+    @Override
+    public String detalles(){
+        return this.tipo+"Cuatro asiento, mucha comodidad.";
+    }
 }

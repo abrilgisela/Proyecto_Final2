@@ -9,5 +9,12 @@ package pkg_modelo;
  * @author anato
  */
 public class Deportivo extends Auto {
-    
+
+    public Deportivo(int id, String tipo, String marca, String anio, String color) {
+        super(id, tipo, marca, anio, color);
+    }
+    @Override
+    public String detalles(){
+        return this.tipo+"Cuatro asiento, mucha comodidad.";
+    }
 }
