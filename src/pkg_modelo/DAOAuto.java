@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class DAOAuto {
     private final String URL = "jdbc:mysql://localhost:3306/autos";
     private final String USER = "root";
-    private final String PASS = "070807";
+    private final String PASS = "root";
 
     // INSERTAR
     public void insertar(Auto a) throws SQLException {
@@ -77,7 +77,7 @@ public class DAOAuto {
                         rs.getInt("id"),
                         rs.getString("tipo"),
                         rs.getString("marca"),
-                        rs.getString("anio"),
+                        rs.getString("matricula"),
                         rs.getString("color")
                 ) {
                     @Override
@@ -91,19 +91,18 @@ public class DAOAuto {
         return lista;
     }
     
-    public void eliminar(String tipo, String marca) throws SQLException {
-        String sql = "DELETE FROM auto WHERE tipo = ? and marca=?";
+    public void eliminar(String matricula) throws SQLException {
+        String sql = "DELETE FROM auto WHERE matricula=?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, tipo);
-            stmt.setString(2, marca);
+            stmt.setString(1, matricula);
             stmt.executeUpdate();
         }
     }
     
     //actualizar
     public void actualizar(Auto a, String tipo, String tipoOriginal) throws SQLException{//throws para capturar errores
-        String sql="UPDATE instrumento SET tipo=?, marca=?, anio=?, color=? WHERE tipo=? and marca=?";
+        String sql="UPDATE auto SET tipo=?, marca=?, matricula=?, color=? WHERE matricula=?";
         try(Connection conn=DriverManager.getConnection(URL,USER,PASS);//Para manejar errores
                 PreparedStatement stmt=conn.prepareStatement(sql)){
                 stmt.setString(1, a.tipo);

@@ -48,6 +48,9 @@ public class AutoControl {
             case "Convertible" -> new Convertible(0,tipo,marca,matricula,color);
             default -> null;
         };
+        if(a==null){
+            throw new NoSeleccionado("Selecciona un tipo de auto");
+        }
         dao.insertar(a);
         //limpiar datos
         limpiarDatos();
@@ -55,13 +58,17 @@ public class AutoControl {
         JOptionPane.showMessageDialog(vista,"Auto registrado: "+ tipo);
         this.consultarDatos();
         //simular clic en consultar para refrescar la tabla
+        }catch(NoSeleccionado e){
+            JOptionPane.showMessageDialog(vista,e.getMessage());
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(vista, "Error al registrar: " + ex.getMessage());
         }
     }
     public void limpiarDatos(){
-        vista.txtMatricula.setText("");
+        vista.comboTipo.setSelectedIndex(0);
         vista.txtMarca.setText("");
+        vista.txtMatricula.setText("");
+        vista.txtColor.setText("");
     }
     
     public void consultarDatos(){
@@ -89,13 +96,11 @@ public class AutoControl {
                 JOptionPane.showMessageDialog(vista, "Selecciona un auto para eliminar");
                 return;
             }
-            
             int confirmacion = JOptionPane.showConfirmDialog(vista,
                     "Estás seguro de eliminar "+vista.nombreSeleccionado +
                             "?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION){
-                String tipo = vista.comboTipo.getSelectedItem().toString();
-                dao.eliminar(vista.nombreSeleccionado, tipo);
+                dao.eliminar(vista.nombreSeleccionado);
                 vista.nombreSeleccionado=null;
                 limpiarDatos();
                 JOptionPane.showMessageDialog(vista, "Auto eliminado.");
@@ -114,8 +119,8 @@ public class AutoControl {
         
         vista.comboTipo.setSelectedItem(vista.tabla.getValueAt(fila, 1).toString());
         vista.txtMarca.setText(vista.tabla.getValueAt(fila, 2).toString());
-        vista.txtMatricula.setText(vista.tabla.getValueAt(fila, 3).toString());
-        vista.txtColor.setText(vista.tabla.getValueAt(fila, 4).toString());
+        vista.txtMatricula.setText(vista.tabla.getValueAt(fila, 0).toString());
+        vista.txtColor.setText(vista.tabla.getValueAt(fila, 3).toString());
         }
     }
     
@@ -146,7 +151,7 @@ public class AutoControl {
         //limpiar datos
         limpiarDatos();
         //mensaje de confirmacion al usuario
-        JOptionPane.showMessageDialog(vista,"Instrumento actualizado: "+ tipo);
+        JOptionPane.showMessageDialog(vista,"Auto actualizado: "+ tipo);
         this.consultarDatos();
         //simular clic en consultar para refrescar la tabla
         }catch(SQLException ex){
